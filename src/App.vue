@@ -1,5 +1,6 @@
 <template>
   <h1>Stop Watch</h1>
+  <h2>Start training!</h2>
 </template>
 
 <script>
