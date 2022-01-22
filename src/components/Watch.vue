@@ -22,11 +22,7 @@
       >
         <p>❌</p>
       </button>
-      <button
-        @click="changeLap"
-        class="button lap-button"
-        :disabled="!timerrunning"
-      >
+      <button @click="changeLap" class="button lap-button" disabled>
         <p>🔁</p>
       </button>
     </div>
