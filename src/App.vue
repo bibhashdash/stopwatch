@@ -21,10 +21,14 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #dae1e9;
   margin-top: 60px;
   display: flex;
   flex-direction: column;
   align-content: center;
+}
+h1,
+h2 {
+  color: darkslategrey;
 }
 </style>
