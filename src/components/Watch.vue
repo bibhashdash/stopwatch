@@ -16,7 +16,7 @@
         <p>⏸️</p>
       </button>
       <button
-        :disabled="!timerrunning"
+        :disabled="timerrunning"
         class="button stop-button"
         @click="stopTimer"
       >
@@ -87,7 +87,7 @@ export default {
 
     stopTimer() {
       console.log("Watch has stopped!");
-      this.timerrunning = !this.timerrunning;
+      this.timerrunning = false;
       console.log(`timerrunning property is set to ${this.timerrunning}`);
       clearInterval(this.timer);
       this.elapsed = [0, 0];
@@ -126,6 +126,9 @@ body {
   height: 50px;
   background-color: black;
   cursor: pointer;
+}
+.button:active {
+  background-color: lemonchiffon;
 }
 .watch-face {
   width: 90%;
