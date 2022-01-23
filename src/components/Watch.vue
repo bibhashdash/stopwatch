@@ -68,7 +68,7 @@ export default {
     startTimer() {
       console.log("Watch has started!");
       this.timerrunning = !this.timerrunning;
-      console.log(`timerrunning property is set to ${this.timerrunning}`);
+      // console.log(`timerrunning property is set to ${this.timerrunning}`);
 
       this.timer = setInterval(() => {
         if (this.elapsedSecs === 59) {
@@ -83,7 +83,7 @@ export default {
 
     pauseTimer() {
       console.log("Watch has paused");
-      console.log(`timerrunning property is set to ${this.timerrunning}`);
+      // console.log(`timerrunning property is set to ${this.timerrunning}`);
       this.timerrunning = !this.timerrunning;
       clearInterval(this.timer);
     },
@@ -91,7 +91,7 @@ export default {
     stopTimer() {
       console.log("Watch has stopped!");
       this.timerrunning = false;
-      console.log(`timerrunning property is set to ${this.timerrunning}`);
+      // console.log(`timerrunning property is set to ${this.timerrunning}`);
       clearInterval(this.timer);
       this.elapsedMins = 0;
       this.elapsedSecs = 0;
@@ -102,28 +102,18 @@ export default {
 
     changeLap() {
       this.lapCounter++;
-      console.log("You're on lap number: ", this.lapCounter);
+      // console.log("You're on lap number: ", this.lapCounter);
 
       this.lapMarkersList.push([this.elapsedMins, this.elapsedSecs]);
-      console.log("Lap Markers List", this.lapMarkersList);
+      // console.log("Lap Markers List", this.lapMarkersList);
       this.prevMins =
         this.lapMarkersList[this.lapCounter - 1][0] -
         this.lapMarkersList[this.lapCounter - 2][0];
       this.prevSecs =
         this.lapMarkersList[this.lapCounter - 1][1] -
         this.lapMarkersList[this.lapCounter - 2][1];
-      console.log(this.prevMins, this.prevSecs);
+      // console.log(this.prevMins, this.prevSecs);
       this.prevLapsList.push([this.prevMins, this.prevSecs]);
-      console.log("Prev laps List", this.prevLapsList);
-      // prevMins: 0,
-      // prevSecs: 0,
-      // elapsedMins: 0,
-      // elapsedSecs: 0,
-      //   this.lapChange = true;
-
-      //   console.log(`timerrunning property is set to ${this.timerrunning}`);
-      //   this.prevLap[this.lapCounter] = [this.elapsed[0], this.elapsed[1]];
-      //   this.lapCounter++;
     },
   },
 };

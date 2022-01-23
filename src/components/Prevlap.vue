@@ -13,8 +13,6 @@ export default {
   name: "Prevlap",
 
   props: ["prevMins", "prevSecs"],
-
-  updated() {},
 };
 </script>
 
