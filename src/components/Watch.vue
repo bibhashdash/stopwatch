@@ -50,7 +50,7 @@ export default {
   data() {
     return {
       lapMarkersList: [[0, 0]],
-      prevLapsList: [],
+      prevLapsList: [[0, 0]],
       prevMins: 0,
       prevSecs: 0,
       elapsedMins: 0,
@@ -97,14 +97,24 @@ export default {
       this.elapsedSecs = 0;
       this.prevMins = 0;
       this.prevSecs = 0;
+      this.lapCounter = 1;
     },
 
     changeLap() {
       this.lapCounter++;
       console.log("You're on lap number: ", this.lapCounter);
 
-      // lapMarkersList: [[0, 0]],
-      // prevLapsList: [[0, 0]],
+      this.lapMarkersList.push([this.elapsedMins, this.elapsedSecs]);
+      console.log("Lap Markers List", this.lapMarkersList);
+      this.prevMins =
+        this.lapMarkersList[this.lapCounter - 1][0] -
+        this.lapMarkersList[this.lapCounter - 2][0];
+      this.prevSecs =
+        this.lapMarkersList[this.lapCounter - 1][1] -
+        this.lapMarkersList[this.lapCounter - 2][1];
+      console.log(this.prevMins, this.prevSecs);
+      this.prevLapsList.push([this.prevMins, this.prevSecs]);
+      console.log("Prev laps List", this.prevLapsList);
       // prevMins: 0,
       // prevSecs: 0,
       // elapsedMins: 0,
