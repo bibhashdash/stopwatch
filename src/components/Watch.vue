@@ -6,7 +6,7 @@
         :disabled="timerrunning"
         @click="startTimer"
       >
-        <p>✅</p>
+        <p>▶️</p>
       </button>
       <button
         class="button pause-button"
@@ -22,37 +22,41 @@
       >
         <p>❌</p>
       </button>
-      <button @click="changeLap" class="button lap-button" disabled>
+      <button
+        @click="changeLap"
+        class="button lap-button"
+        :disabled="!timerrunning"
+      >
         <p>🔁</p>
       </button>
     </div>
 
     <div class="watch-face">
-      <div class="timer prev-lap">
-        <div class="timer-title"><p class="timer-title-text">Prev Lap</p></div>
-        <p class="timer-text">00:00</p>
-      </div>
-      <div class="timer elapsed">
-        <div class="timer-title"><p class="timer-title-text">Elapsed</p></div>
-        <p class="timer-text">
-          <span>{{ elapsed[0] }}</span
-          >:<span>{{ elapsed[1] }}</span>
-        </p>
-      </div>
-
-      <div class="timer curr-lap">
-        <div class="timer-title"><p class="timer-title-text">Curr Lap</p></div>
-        <p class="timer-text">00:00</p>
-      </div>
+      <Prevlap :prevMins="prevMins" :prevSecs="prevSecs" />
+      <Elapsed :elapsedMins="elapsedMins" :elapsedSecs="elapsedSecs" />
     </div>
   </div>
 </template>
 
 <script>
+import Prevlap from "./Prevlap.vue";
+import Elapsed from "./Elapsed.vue";
 export default {
+  name: "Watch",
+  components: {
+    Prevlap,
+    Elapsed,
+  },
   data() {
     return {
-      prevLap: [0, 0],
+      lapMarkersList: [[0, 0]],
+      prevLapsList: [],
+      prevMins: 0,
+      prevSecs: 0,
+      elapsedMins: 0,
+      elapsedSecs: 0,
+      // lapChange: false,
+      lapCounter: 1,
       elapsed: [0, 0],
       currLap: [0, 0],
       timerrunning: false,
@@ -65,15 +69,18 @@ export default {
       console.log("Watch has started!");
       this.timerrunning = !this.timerrunning;
       console.log(`timerrunning property is set to ${this.timerrunning}`);
+
       this.timer = setInterval(() => {
-        if (this.elapsed[1] === 59) {
-          this.elapsed[0]++;
-          this.elapsed[1] = 0;
+        if (this.elapsedSecs === 59) {
+          this.elapsedMins = 0;
+          elapsedSecs++;
+          this.elapsedSecs = 0;
         } else {
-          this.elapsed[1]++;
+          this.elapsedSecs++;
         }
       }, 1000);
     },
+
     pauseTimer() {
       console.log("Watch has paused");
       console.log(`timerrunning property is set to ${this.timerrunning}`);
@@ -86,12 +93,27 @@ export default {
       this.timerrunning = false;
       console.log(`timerrunning property is set to ${this.timerrunning}`);
       clearInterval(this.timer);
-      this.elapsed = [0, 0];
+      this.elapsedMins = 0;
+      this.elapsedSecs = 0;
+      this.prevMins = 0;
+      this.prevSecs = 0;
     },
+
     changeLap() {
-      console.log("You're on a new lap!");
-      // this.timerrunning = !this.timerrunning;
-      console.log(`timerrunning property is set to ${this.timerrunning}`);
+      this.lapCounter++;
+      console.log("You're on lap number: ", this.lapCounter);
+
+      // lapMarkersList: [[0, 0]],
+      // prevLapsList: [[0, 0]],
+      // prevMins: 0,
+      // prevSecs: 0,
+      // elapsedMins: 0,
+      // elapsedSecs: 0,
+      //   this.lapChange = true;
+
+      //   console.log(`timerrunning property is set to ${this.timerrunning}`);
+      //   this.prevLap[this.lapCounter] = [this.elapsed[0], this.elapsed[1]];
+      //   this.lapCounter++;
     },
   },
 };
@@ -103,7 +125,7 @@ body {
   padding: 0;
 }
 .watchcontainer {
-  width: 300px;
+  width: 320px;
   height: 600px;
   background-color: rgb(245, 208, 208);
   align-self: center;
