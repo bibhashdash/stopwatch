@@ -17,7 +17,6 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -26,6 +25,9 @@ export default {
   display: flex;
   flex-direction: column;
   align-content: center;
+  font-family: "Montserrat", sans-serif;
+  font-family: "Orbitron", sans-serif;
+  font-family: "Quicksand", sans-serif;
 }
 h1,
 h2 {
