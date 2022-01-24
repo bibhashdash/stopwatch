@@ -154,10 +154,6 @@ export default {
 </script>
 
 <style scoped>
-body {
-  /* margin: 0; */
-  /* padding: 0; */
-}
 .watchcontainer {
   width: 320px;
   height: 520px;
