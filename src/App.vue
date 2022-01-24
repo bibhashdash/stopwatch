@@ -1,6 +1,6 @@
 <template>
   <h1>Stop Watch</h1>
-  <h2>Start Training!</h2>
+
   <Watch />
 </template>
 

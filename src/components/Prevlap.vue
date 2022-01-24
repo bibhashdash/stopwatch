@@ -1,10 +1,10 @@
 <template>
   <div class="timer prev-lap">
     <div class="timer-title"><p class="timer-title-text">Prev Lap</p></div>
-    <p class="timer-text">
-      <span>{{ styleTimer(prevMins) }}</span> :
-      <span>{{ styleTimer(prevSecs) }}</span>
-    </p>
+    <div class="timer-text">
+      <p>{{ styleTimer(prevMins) }}:</p>
+      <p class="secsDisplay">{{ styleTimer(prevSecs) }}</p>
+    </div>
   </div>
 </template>
 
@@ -21,9 +21,4 @@ export default {
 };
 </script>
 
-<style>
-.timer-text span {
-  font-size: 2rem;
-  color: aliceblue;
-}
-</style>
+<style></style>

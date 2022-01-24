@@ -15,7 +15,7 @@
         :disabled="timerrunning"
         @click="startTimer"
       >
-        <p>▶️</p>
+        <p><i class="fas fa-play"></i></p>
         <p>Start</p>
       </button>
       <button
@@ -23,7 +23,7 @@
         :disabled="!timerrunning"
         @click="pauseTimer"
       >
-        <p>⏸️</p>
+        <p><i class="fas fa-pause"></i></p>
         <p>Pause</p>
       </button>
       <button
@@ -31,15 +31,15 @@
         class="button stop-button"
         @click="stopTimer"
       >
-        <p>❌</p>
-        <p>Stop</p>
+        <p><i class="fas fa-times"></i></p>
+        <p>Clear</p>
       </button>
       <button
         @click="changeLap"
         class="button lap-button"
         :disabled="!timerrunning"
       >
-        <p>🔁</p>
+        <p><i class="fas fa-redo"></i></p>
         <p>Lap</p>
       </button>
       <button
@@ -47,8 +47,8 @@
         class="button laplist-button"
         :disabled="timerrunning"
       >
-        <p>📃</p>
-        <p>History</p>
+        <p><i class="fas fa-clipboard-list"></i></p>
+        <p>Log</p>
       </button>
     </div>
   </div>
@@ -102,8 +102,7 @@ export default {
 
       this.timer = setInterval(() => {
         if (this.elapsedSecs === 59) {
-          this.elapsedMins = 0;
-          elapsedSecs++;
+          this.elapsedMins++;
           this.elapsedSecs = 0;
         } else {
           this.elapsedSecs++;
@@ -161,7 +160,7 @@ body {
 }
 .watchcontainer {
   width: 320px;
-  height: 500px;
+  height: 520px;
   background-color: rgb(114, 114, 114);
   align-self: center;
   display: flex;
@@ -188,10 +187,30 @@ body {
   /* width: 100%; */
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
   border-radius: 10px;
   border-style: none;
   font-family: "Quicksand", sans-serif;
+  letter-spacing: 2px;
+}
+.fas {
+  margin-right: 10px;
+  font-size: 1rem;
+}
+.fa-play {
+  color: green;
+}
+.fa-pause {
+  color: rgb(0, 93, 216);
+}
+.fa-times {
+  color: red;
+}
+.fa-redo {
+  color: rgb(233, 195, 27);
+}
+.fa-clipboard-list {
+  color: lightslategray;
 }
 .start-button {
   grid-column: 1 / 3;
@@ -203,22 +222,26 @@ body {
   color: #fff;
   /* font-size: 1rem; */
 }
+.button:hover {
+  background-color: rgba(0, 0, 0, 0.787);
+}
 .button:active {
   background-color: lemonchiffon;
 }
 .button:disabled {
-  opacity: 0.5;
+  opacity: 0.2;
   cursor: not-allowed;
 }
 .watch-face {
   width: 90%;
-  height: 60%;
+  height: 70%;
   display: grid;
   grid-template-rows: repeat(2, 1fr);
   border-radius: 5%;
   background-color: black;
   justify-items: center;
   font-family: "Orbitron", sans-serif;
+  letter-spacing: 2px;
 }
 .timer {
   /* border-radius: 5%; */
@@ -226,8 +249,9 @@ body {
 }
 
 .lapslist-backdrop {
-  background-color: rgba(0, 0, 0, 0.308);
-  width: 300px;
+  /* background-color: rgba(146, 96, 96, 0.308); */
+  width: 320px;
+
   align-self: center;
   display: flex;
   flex-direction: column;
@@ -238,11 +262,13 @@ body {
 .lapslist-container {
   height: auto;
   z-index: 45;
-  background-color: aliceblue;
-
-  color: black;
+  background-color: rgb(94, 178, 251);
+  border-radius: 10px;
+  color: #fff;
 }
 ul {
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 </style>

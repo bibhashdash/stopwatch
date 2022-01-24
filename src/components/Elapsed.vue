@@ -2,13 +2,14 @@
   <div class="timer elapsed">
     <div class="timer-title"><p class="timer-title-text">Elapsed</p></div>
 
-    <p class="timer-text">
-      <span>{{ styleTimer(elapsedMins) }}</span
-      >:<span>{{ styleTimer(elapsedSecs) }}</span>
-    </p>
-    <p class="lapNumberDisplay" v-if="timerrunning === true">
+    <div class="timer-text">
+      <p>{{ styleTimer(elapsedMins) }}:</p>
+
+      <p class="secsDisplay">{{ styleTimer(elapsedSecs) }}</p>
+    </div>
+    <div class="lapNumberDisplay" v-if="timerrunning === true">
       Lap {{ lapCounter }} active
-    </p>
+    </div>
   </div>
 </template>
 
@@ -26,16 +27,27 @@ export default {
 </script>
 
 <style>
+.elapsed {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
 .lapNumberDisplay {
   color: rgb(233, 195, 27);
 }
-.timer-text p,
-.timer-text span {
-  font-size: 2rem;
+.timer-text {
   color: aliceblue;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-size: 1.5rem;
 }
-.timer-text span {
-  margin: 1rem;
-  width: 80px;
+.timer-text p {
+  width: 4rem;
+  letter-spacing: 5px;
+}
+.secsDisplay::after {
+  content: "s";
+  font-size: 14px;
 }
 </style>
